@@ -1,0 +1,71 @@
+import time
+from selenium.webdriver.support.ui import WebDriverWait
+import DriverSetup
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.common.keys import Keys
+
+from selenium.webdriver.support.ui import Select
+from DriverSetup import driver_setup
+
+my_driver = driver_setup()
+my_driver.get('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
+# username = my_driver.find_element(DriverSetup.By.NAME,'username')
+element = WebDriverWait(my_driver,15).until(EC.visibility_of_element_located((DriverSetup.By.NAME, 'username' )))
+element.send_keys('Admin')
+password = WebDriverWait(my_driver,15).until(EC.visibility_of_element_located((DriverSetup.By.NAME, 'password' )))
+password.send_keys('admin123')
+login_button = WebDriverWait(my_driver,5).until(EC.visibility_of_element_located((DriverSetup.By.CSS_SELECTOR, "button.orangehrm-login-button" )))
+login_button.click()
+my_driver.implicitly_wait(5)
+admin_button = my_driver.find_element(DriverSetup.By.XPATH,'//*[@id="app"]/div[1]/div[1]/aside/nav/div[2]/ul/li[1]/a')
+my_driver.implicitly_wait(5)
+admin_button.click()
+
+pim_button = my_driver.find_element(DriverSetup.By.XPATH,'//*[@id="app"]/div[1]/div[1]/aside/nav/div[2]/ul/li[2]/a/span')
+pim_button.click()
+leave_button= my_driver.find_element(DriverSetup.By.CSS_SELECTOR,'#app > div.oxd-layout > div.oxd-layout-navigation > aside > nav > div.oxd-sidepanel-body > ul > li:nth-child(3) > a')
+leave_button.click()
+time_button= my_driver.find_element(DriverSetup.By.XPATH,'//*[@id="app"]/div[1]/div[1]/aside/nav/div[2]/ul/li[4]/a')
+time_button.click()
+recruit_button= my_driver.find_element(DriverSetup.By.XPATH,'//*[@id="app"]/div[1]/div[1]/aside/nav/div[2]/ul/li[5]/a/span')
+recruit_button.click()
+myinfo_button= my_driver.find_element(DriverSetup.By.XPATH,'//*[@id="app"]/div[1]/div[1]/aside/nav/div[2]/ul/li[6]/a')
+myinfo_button.click()
+performance_button= my_driver.find_element(DriverSetup.By.XPATH,'//*[@id="app"]/div[1]/div[1]/aside/nav/div[2]/ul/li[7]/a')
+performance_button.click()
+dashboard_button= my_driver.find_element(DriverSetup.By.XPATH,'//*[@id="app"]/div[1]/div[1]/aside/nav/div[2]/ul/li[8]/a/span')
+dashboard_button.click()
+directory_button= my_driver.find_element(DriverSetup.By.XPATH,'//*[@id="app"]/div[1]/div[1]/aside/nav/div[2]/ul/li[9]/a')
+directory_button.click()
+maintenance_button= my_driver.find_element(DriverSetup.By.XPATH,'//*[@id="app"]/div[1]/div[1]/aside/nav/div[2]/ul/li[10]/a/span')
+maintenance_button.click()
+main_password = my_driver.find_element(DriverSetup.By.CSS_SELECTOR,'#app > div.orangehrm-admin-access-container > div.orangehrm-card-container > form > div:nth-child(6) > div > div:nth-child(2) > input')
+main_password.send_keys('admin123')
+confirm_password = my_driver.find_element(DriverSetup.By.XPATH,'//*[@id="app"]/div[1]/div[1]/form/div[4]/button[2]')
+confirm_password.click()
+claim_button= my_driver.find_element(DriverSetup.By.XPATH,'//*[@id="app"]/div[1]/div[1]/aside/nav/div[2]/ul/li[11]/a')
+claim_button.click()
+buzz_button= my_driver.find_element(DriverSetup.By.XPATH,'//*[@id="app"]/div[1]/div[1]/aside/nav/div[2]/ul/li[12]/a')
+buzz_button.click()
+admin_button = my_driver.find_element(DriverSetup.By.XPATH,'//*[@id="app"]/div[1]/div[1]/aside/nav/div[2]/ul/li[1]/a')
+admin_button.click()
+admin_username = my_driver.find_element(DriverSetup.By.XPATH,'//*[@id="app"]/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[1]/div/div[1]/div/div[2]/input')
+wait = WebDriverWait(my_driver,10)
+admin_username.send_keys('joe.root')
+WebDriverWait(my_driver,10)
+drop_down1 = wait.until(EC.element_to_be_clickable((DriverSetup.By.XPATH, '//*[@id="app"]/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[1]/div/div[2]/div/div[2]/div/div')))
+drop_down1.click()
+wait = WebDriverWait(my_driver,10)
+option_to_select = wait.until(EC.element_to_be_clickable((DriverSetup.By.XPATH, "//div[contains(text(), 'Admin')]")))
+drop_down1.send_keys(Keys.ARROW_DOWN)
+
+emp_name =my_driver.find_element(DriverSetup.By.XPATH,'//*[@id="app"]/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[1]/div/div[3]/div/div[2]/div/div/input')
+emp_name.send_keys('joe')
+my_driver.implicitly_wait(10)
+emp_name(Keys.ARROW_DOWN)
+
+my_driver.implicitly_wait(10)
+emp_name(Keys.ENTER)
+admin_search = my_driver.find_element(DriverSetup.By.XPATH,'//*[@id="app"]/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[2]/button[2]')
+admin_search.click()
